@@ -18,7 +18,7 @@
   //Creo una url para determinar si estoy trabajando en desarrollo o producción
   var url = (window.location.hostname.includes('localhost'))
         ? 'http://localhost:8080/api/auth/google'
-        :  'http://https://webservernode-fabios.herokuapp.com/api/auth/google'
+        :  'https://webservernode-fabios.herokuapp.com/api/auth/google'
 
   function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
