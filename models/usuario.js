@@ -23,6 +23,7 @@ const usuarioSchema = Schema({
   rol: {
     type: String,
     required: true,
+    default: 'USER',
     emun: ['ADMIN','USER']          //DEFINO los dos tipos posibles para asignarle 
   },
   estado: {
