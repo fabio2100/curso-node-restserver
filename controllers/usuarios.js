@@ -76,11 +76,12 @@ const usuariosPost = async function (req,res=response){
 
 const usuariosDelete =async function (req,res=response){
   const {id} = req.params;
+  const usuarioVerficado = req.usuario;
   const usuario = await Usuario.findByIdAndUpdate(id,{estado:false})
 
   res.json({
     msg:"put DELETE - Estado en false",
-    usuario
+    usuario,usuarioVerficado
   })
 }
 
