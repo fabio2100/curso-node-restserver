@@ -1,5 +1,7 @@
+const { Categoria,Producto } = require('../models');
 const Role = require('../models/role');
-const Usuario = require('../models/usuario')
+const Usuario = require('../models/usuario');
+//const {Producto} = require('../models/producto');
 
 const esRoleValido = async(rol='')=>{
   const existeRol = await Role.findOne({rol});
@@ -16,6 +18,14 @@ const existeEmail = await Usuario.findOne({correo});
   }
 }
 
+const esCategoriaValida = async(categoria = '') => {
+  categoria = categoria.toUpperCase();
+  const nombre = categoria;
+  const existeCategoria = await Categoria.findOne({nombre});
+  if (!existeCategoria){
+    throw new Error(`La categoría ${categoria} no existe en la base de datos`)
+  }
+}
 
 const existeUsuarioPorId = async(id='')=>{
   const existeUsuario = await Usuario.findById(id);
@@ -26,10 +36,26 @@ const existeUsuarioPorId = async(id='')=>{
 } 
 
 
+const existeCategoriaPorId = async(id='')=>{
+  const existeCategoria = await Categoria.findById(id);
+  if(!existeCategoria){
+    throw new Error(`El id indicado no está asociado a ninguna categoria id=${id}`)
+  }
+}
+
+const existeProductoPorId = async(id='')=>{
+  const existeProducto = await Producto.findById(id);
+  if (!existeProducto){
+    throw new Error(`El id ${id} no está asociado a ningún producto`)
+  }
+}
 
 
 module.exports = {
   esRoleValido,
   esMailValido,
-  existeUsuarioPorId
+  existeUsuarioPorId,
+  existeCategoriaPorId,
+  esCategoriaValida,
+  existeProductoPorId
 }
